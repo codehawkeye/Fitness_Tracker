@@ -8,7 +8,7 @@ const Workout = require("../models/workout");
 router.put("api/workouts/:id", ({ body, params }, res) => {
     Workout.findByIdAndUpdate(
         params.id,
-        { $push: { exercise: body } },
+        { $push:{exercise:body}},
     )
         .then(dbWorkout => {
             res.json(dbWorkout);
@@ -20,7 +20,7 @@ router.put("api/workouts/:id", ({ body, params }, res) => {
 
 
 
-//  post rout
+//  post route
 router.post("/api/workouts", (req, res) => {
     Workout.create({})
       .then(dbWorkout => {
@@ -43,8 +43,8 @@ router.post("/api/workouts", (req, res) => {
   });
 
 
-  router.get("/api/workouts/range", ({ query }, res) => {
-    Workout.find({ day: { $gte: query.start, $lte: query.end } })
+  router.get("/api/workouts/range", ({query}, res) => {
+    Workout.find({ day: { $gte: query.start, $lte: query.end}})
       .then(dbWorkouts => {
         res.json(dbWorkouts);
       })
@@ -53,7 +53,7 @@ router.post("/api/workouts", (req, res) => {
       });
   });
 
-  router.delete("/api/workouts", ({ body }, res) => {
+  router.delete("/api/workouts", ({body}, res) => {
     Workout.findByIdAndDelete(body.id)
       .then(() => {
         res.json(true);

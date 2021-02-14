@@ -121,8 +121,21 @@ let workoutSeed = [
         sets: 4
       }
     ]
-  }
-];
+  },
+    // total weight and duration fields added to collection
+    db.workout.aggregate([
+      {
+        $addFields: {
+          totalWeight: { $sum: "weight" },
+          totalDuration: {$sum: "duration"}
+       } 
+      },
+      {
+        $addFields: { totalWorkout:
+        { $add: [ "totalWeight", "totalDuration"]}}
+      }
+  ]),
+
 
 db.Workout.deleteMany({})
   .then(() => db.Workout.collection.insertMany(workoutSeed))
