@@ -20,7 +20,7 @@ router.put("api/workouts/:id", ({ body, params }, res) => {
 
 
 
-
+//  post rout
 router.post("/api/workouts", (req, res) => {
     Workout.create({})
       .then(dbWorkout => {
@@ -31,6 +31,7 @@ router.post("/api/workouts", (req, res) => {
       });
   });
 
+//   continue workout
   router.get("/api/workouts", (req, res) => {
     Workout.find()
       .then(dbWorkouts => {
