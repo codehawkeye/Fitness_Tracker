@@ -123,7 +123,7 @@ let workoutSeed = [
     ]
   },
     // total weight and duration fields added to collection
-    db.workout.aggregate([
+    workout.aggregate([
       {
         $addFields: {
           totalWeight: { $sum: "weight" },
